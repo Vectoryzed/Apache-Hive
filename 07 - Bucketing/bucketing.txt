@@ -1,0 +1,15 @@
+BUCKETING
+
+set hive.enforce.bucketing=true;
+set hive.exec.dynamic.partition=true;
+
+create table if not exists table5(col1 int,col2 string,col3 string,col4 int) row format delimited fields terminated by',' lines terminated by'\n'stored as textfile;
+
+load data local inpath'/home/jivesh/files/bucket'into table table5;
+
+create table if not exists table10(col1 int,col2 string,col3 string,col4 int) clustered by(col2) into 4 buckets stored as textfile;
+insert into table table10 select col1,col2,col3,col4 from table5;
+
+create table if not exists table11(col1 int,col2 string,col3 string)partitioned by (year int) clustered by(col2) into 4 buckets stored as textfile;
+
+insert into table table11 partition(year) select col1,col2,col3,col4 from table5;

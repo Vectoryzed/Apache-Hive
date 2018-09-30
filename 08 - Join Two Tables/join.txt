@@ -1,0 +1,19 @@
+JOINS
+
+create table if not exists table5(col1 int,col2 string,col3 int) row format delimited fields terminated by',' lines terminated by'\n'stored as textfile;
+
+load data local inpath'/home/jivesh/files/leftjoin'overwrite into table table5;
+
+create table if not exists table7(col1 int,col2 string,col3 int) row format delimited fields terminated by',' lines terminated by'\n'stored as textfile;
+
+load data local inpath'/home/jivesh/files/middlejoin'overwrite into table table7;
+
+create table if not exists table6(col1 int,col2 string,col3 string) row format delimited fields terminated by',' lines terminated by'\n'stored as textfile;
+
+load data local inpath'/home/jivesh/files/rightjoin'overwrite into table table6;
+
+select table5.col1,table5.col3,table7.col1,table7.col3 from table5 join table7 on (table5.col1=table7.col1);
+
+select table5.col1,table5.col3,table7.col1,table7.col3 from table5 left outer join table7 on (table5.col1=table7.col1);
+select table5.col1,table5.col3,table7.col1,table7.col3 from table5 right outer join table7 on (table5.col1=table7.col1);
+select table5.col1,table5.col3,table7.col1,table7.col3 from table5 full outer join table7 on (table5.col1=table7.col1);

@@ -1,0 +1,8 @@
+499,ice hockey,11
+502,football,11
+503,icehockey,6
+504,baseball,9
+507,cricket,11
+509,cricket,11
+511,volly,12
+512,natio,13

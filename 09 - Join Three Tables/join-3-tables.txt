@@ -1,0 +1,7 @@
+3 TABLE JOIN--same key
+
+select table5.col1,table5.col3,table7.col1,table7.col3,table6.col1,table6.col3 from table5 join table7 on (table5.col1=table7.col1) join table6 on (table7.col1=table6.col1);
+
+3 TABLE JOIN--different key
+
+select table5.col1,table5.col3,table7.col2,table7.col3,table6.col2,table6.col3 from table5 join table7 on (table5.col1=table7.col1) join table6 on (table7.col2=table6.col2);

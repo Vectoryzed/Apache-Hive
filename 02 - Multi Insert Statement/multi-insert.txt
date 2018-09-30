@@ -1,0 +1,16 @@
+MULTI INSERT
+
+
+create table movies_genre(name string,actors array<string>,genre string,rating int)row format delimited fields terminated by','collection items terminated by':' lines terminated by'\n' stored as textfile;
+
+
+load data local inpath'/home/jivesh/files/movies_genre'into table movies_genre;
+
+
+create table drama(name string,actors array<string>,genre string,rating int) stored as textfile;
+
+
+create table fiction(name string,actors array<string>,genre string,rating int) stored as textfile;
+
+
+from movies_genre insert into table drama select name,actors,genre,rating where genre='drama' insert overwrite table fiction select name,actors,genre,rating where genre='science fiction';

@@ -1,0 +1,26 @@
+ALTER TABLE STATEMENTS
+
+create table if not exists table9(col1 int,col2 string,col3 string,col4 int)row format delimited fields terminated by',' lines terminated by'\n' stored as textfile;
+
+load data local inpath'/home/jivesh/files/dynamic'into table table9;
+
+alter table table5 rename to table10;
+desc table9;
+
+alter table table10 change column col3 expalination int;
+alter table table10 change column  expalination col3 string;
+
+alter table table10 change column col1 id int after col2;
+
+alter table table10 add columns (col5 int,col6 string);
+desc table10;
+select * from table10;
+
+alter table table10 replace columns (col7 int,col8 int);
+desc table10;
+select * from table10;
+
+alter table table10 set tblproperties('creator'='jivesh');
+desc formatted table10;
+
+alter table table10 set fileformat sequencefile;
